@@ -1,0 +1,23 @@
+{
+  "name": "ratethemovie",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "bootstrap": "^3.4.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NoahEmmenegger/ratethemovie.git"
+  },
+  "author": "Noah Emmenegger",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/NoahEmmenegger/ratethemovie/issues"
+  },
+  "homepage": "https://github.com/NoahEmmenegger/ratethemovie#readme"
+}
