@@ -16,8 +16,14 @@ class FilmController {
         $this->view = new EchoView();
     }
 
+    public function index()
+    {
+        $this->view->assign('testkey', 'testdata');
+        $this->view->render('<h1>index</h1>');
+    }
+
     public function testFunctionAction()
     {
-        $this->view->render('testttes');
+        $this->view->render('testFunction');
     }
 }
