@@ -20,8 +20,15 @@ class EchoView {
 ?>
 
 <html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="/ratethemovie/vorlagen/style.css">
+    </head>
     <body>
-    <li><a href="">Register</a></li>
-    <li><a href="">Login</a></li>
+       <header>
+       <ul>
+            <li><a href="">Login</a></li>
+            <li><a href="">Register</a></li>
+        </ul>
+       </header>
     </body>
 </html>

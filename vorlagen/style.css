@@ -11,7 +11,7 @@ ul {
   }
   
   li {
-    float: left;
+    float: right;
   }
   
   li a {
@@ -24,4 +24,15 @@ ul {
   
   li a:hover {
     background-color: #111;
+  }
+
+  .startseitenblock {
+    background-color: #e3e1e1;
+    text-align: center;
+    margin: 0px;
+    padding: 100px;
+  }
+
+  .beliebtfeed {
+    text-align: center;
   }
