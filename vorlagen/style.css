@@ -38,5 +38,12 @@ ul {
   }
 
   .filmbox {
-    text-align: center;
+    display: grid;
+    grid-template-columns: auto auto auto;
+    padding: 10px;
+  }
+
+  .item {
+    border: black 1px solid;
+    margin: 10%;
   }

@@ -13,15 +13,17 @@
 <div class="beliebtfeed">
     <h1>Beliebteste Filme</h1>
     <h2><?php echo $this->data['testkey'] ?></h2>
+    <div class="filmbox">
     <?php 
         while($rows = mysqli_fetch_assoc($result))
         {
     ?>
-        <div class="filmbox">
-            <?php echo $rows['Titel'] ?>
+        <div class="item">
+            <a href="./detail/<?php echo $rows['Titel'] ?>"><?php echo $rows['Titel'] ?></a>
         </div>
 
     <?php
         }
     ?>
+    </div>
 </div>

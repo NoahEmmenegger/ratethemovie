@@ -1,1 +1,1 @@
-<h1 style="text-align: center">Suche: <?php echo $this->data['filmName'] ?></h1>
+<h1 style="text-align: center"><?php echo $this->data['filmName'] ?></h1>
