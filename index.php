@@ -1,25 +1,26 @@
 <?php
-//url auslesen
-
-//switch case
-
 
 use NoahEmmenegger\RateTheMovie\Controller\FilmController;
 
 include_once('Classes/Controller/FilmController.php');
 
-echo str_replace('/ratethemovie/', '', $_SERVER['REQUEST_URI']);
+$explode = explode('/', $_SERVER['REQUEST_URI']);
+$filmName = array_splice($explode, -1)[0];
 
 switch (str_replace('/ratethemovie/', '', $_SERVER['REQUEST_URI'])) {
     case '' :
         $filmController = new FilmController();
         $filmController->index();
         break;
-    case 'index.php' :
+    case 'index' :
         $filmController = new FilmController();
         $filmController->index();
         break;
-    case 'about.php' :
+    case 'detail/' . $filmName :
+        $filmController = new FilmController();
+        $filmController->detail($filmName);
+        break;
+    case 'register' :
         $filmController = new FilmController();
         $filmController->testFunctionAction();
         break;
@@ -29,7 +30,3 @@ switch (str_replace('/ratethemovie/', '', $_SERVER['REQUEST_URI'])) {
         $filmController->testFunctionAction();
         break;
 }
-
-
-
-//controller action aufrufen

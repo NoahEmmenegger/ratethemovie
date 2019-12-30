@@ -19,11 +19,17 @@ class FilmController {
     public function index()
     {
         $this->view->assign('testkey', 'testdata');
-        $this->view->render('<h1>index</h1>');
+        $this->view->render('index');
+    }
+
+    public function detail($filmName)
+    {
+        $this->view->assign('filmName', $filmName);
+        $this->view->render('detail');
     }
 
     public function testFunctionAction()
     {
-        $this->view->render('testFunction');
+        $this->view->render('register');
     }
 }

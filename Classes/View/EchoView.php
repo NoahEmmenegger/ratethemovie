@@ -6,10 +6,9 @@ class EchoView {
 
     protected $data = [];
 
-    public function render($output)
+    public function render($phpFileName)
     {
-        require(__DIR__. "/template/register.php");
-        echo $output;
+        require(__DIR__. "/template//". $phpFileName .".php");
     }
 
     public function assign($key, $data)
@@ -21,10 +20,8 @@ class EchoView {
 ?>
 
 <html>
-    <head>
-        test
-    </head>
     <body>
-        <h1>template</h1>
+    <li><a href="">Register</a></li>
+    <li><a href="">Login</a></li>
     </body>
 </html>
