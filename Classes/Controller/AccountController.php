@@ -24,13 +24,20 @@ class AccountController {
         {
             $accountService = new AccountService();
             $accountService->CreateAccount($_POST['vorname'], $_POST['nachname'], $_POST['email'], $_POST['psw']);
-        } else {
-            $this->view->render('register');
+
+            session_start();
+            $_SESSION['userid'] = $accountService->GetUserIdByEmail($_POST['email']);
         }
+        $this->view->render('register');
     }
 
     public function loginAction()
     {
+        if ($_POST['email' && $_POST['passwort']])
+        {
+            $accountService = new AccountService();
+            $accountService->Login($_POST['email'], $_POST['passwort']);
+        }
         $this->view->render('login');
     }
 }

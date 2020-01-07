@@ -8,10 +8,10 @@ use PDO;
 class AccountService {
     public function CreateAccount($vorname, $nachname, $email, $psw)
     {
-        if(!$this->GetUserByEmail($email))
+        if($this->GetUserByEmail($email)->rowCount() == 0)
         {
             $con = new PDO('mysql:host=localhost;dbname=ratethemovie', 'root');
-            $sql = "INSERT INTO User (Vorname, Nachname, Email) VALUES ('$vorname', '$nachname', '$email')";
+            $sql = "INSERT INTO User (Vorname, Nachname, Email, Passwort) VALUES ('$vorname', '$nachname', '$email', '$psw')";
             $result = $con->query($sql);
         }
     }
@@ -21,7 +21,20 @@ class AccountService {
         $con = new PDO('mysql:host=localhost;dbname=ratethemovie', 'root');
         $sql = "SELECT * FROM `user` WHERE `email`LIKE '$email'";
         $result = $con->query($sql);
-        var_dump($result);
         return $result;
     }
+
+    public function GetUserIdByEmail($email)
+    {
+        $con = new PDO('mysql:host=localhost;dbname=ratethemovie', 'root');
+        $sql = "SELECT `Id` FROM `user` WHERE `email`LIKE '$email'";
+        $result = $con->query($sql);
+        return $result->fetch(PDO::FETCH_ASSOC)['Id'];
+    }
+
+    public function Login($email, $passwort)
+    {
+        
+    }
+
 }

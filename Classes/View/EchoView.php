@@ -26,7 +26,7 @@ class EchoView {
     <body>
        <header>
        <ul>
-            <li><a href="">Login</a></li>
+            <li><a href="/ratethemovie/login">Login</a></li>
             <li><a href="/ratethemovie/register">Register</a></li>
         </ul>
        </header>
