@@ -57,3 +57,12 @@ ul {
   .detailImage {
     height: 30%;
   }
+
+  .kommentar {
+    border: black 1px solid;
+    margin: 10%;
+  }
+
+  .FilmDetail {
+    text-align: center;
+  }

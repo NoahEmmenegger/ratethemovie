@@ -28,7 +28,9 @@ class FilmController {
     {
         $filmService = new FilmService();
         $film = $filmService->GetFilmByName($filmName);
+        $kommentare = $filmService->GetKommentare($film['Id']);
         $this->view->assign('film', $film);
+        $this->view->assign('kommentare', $kommentare);
         $this->view->render('detail');
     }
 
