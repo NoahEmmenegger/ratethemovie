@@ -53,3 +53,7 @@ ul {
   .previewImage {
     width: 100%;
   }
+
+  .detailImage {
+    height: 30%;
+  }

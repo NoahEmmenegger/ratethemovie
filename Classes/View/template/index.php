@@ -19,7 +19,7 @@
         {
     ?>
         <div class="item" onclick="window.location='./detail/<?php echo $rows['Titel'] ?>'">
-            <img class="previewImage" src="<?php echo $rows['Bild'] ?>"/>
+            <img class="previewImage" src="http://localhost/ratethemovie/<?php echo $rows['Bild'] ?>"/>
         </div>
 
     <?php

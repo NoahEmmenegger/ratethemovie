@@ -3,7 +3,9 @@
 namespace NoahEmmenegger\RateTheMovie\Controller;
 
 include_once(__DIR__.'/../View/EchoView.php');
+include_once('Classes/Service/FilmService.php');
 
+use NoahEmmenegger\RateTheMovie\Service\FilmService;
 use \NoahEmmenegger\RateTheMovie\View\EchoView;
 
 
@@ -24,7 +26,9 @@ class FilmController {
 
     public function detail($filmName)
     {
-        $this->view->assign('filmName', $filmName);
+        $filmService = new FilmService();
+        $film = $filmService->GetFilmByName($filmName);
+        $this->view->assign('film', $film);
         $this->view->render('detail');
     }
 
