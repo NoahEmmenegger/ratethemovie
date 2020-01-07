@@ -25,8 +25,7 @@ class AccountController {
             $accountService = new AccountService();
             $accountService->CreateAccount($_POST['vorname'], $_POST['nachname'], $_POST['email'], $_POST['psw']);
 
-            session_start();
-            $_SESSION['userid'] = $accountService->GetUserIdByEmail($_POST['email']);
+            setcookie("userid", $accountService->GetUserIdByEmail($_POST['email']) ,0);
         }
         $this->view->render('register');
     }

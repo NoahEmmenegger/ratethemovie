@@ -26,8 +26,20 @@ class EchoView {
     <body>
        <header>
        <ul>
+           <?php 
+                if (!isset($_COOKIE['userid']))
+                {
+           ?>
             <li><a href="/ratethemovie/login">Login</a></li>
             <li><a href="/ratethemovie/register">Register</a></li>
+            <?php 
+                }
+                else {
+           ?>
+            <li><a href="/ratethemovie/logout">logout</a></li>
+            <?php 
+                }
+           ?>
         </ul>
        </header>
     </body>

@@ -40,8 +40,7 @@ class AccountService {
             $userfetch = $userraw->fetch(PDO::FETCH_ASSOC);
             if($userfetch['Passwort'] == $passwort)
             {
-                session_start();
-                $_SESSION['userid'] = $userfetch['Id'];
+                setcookie("userid", $userfetch['Id'],0);
             }
         }
     }
