@@ -39,11 +39,17 @@ ul {
 
   .filmbox {
     display: grid;
-    grid-template-columns: auto auto auto;
+    grid-template-columns: 33.33% 33.33% 33.33%;
     padding: 10px;
+    height: 60%;
   }
 
   .item {
     border: black 1px solid;
     margin: 10%;
+    cursor: pointer;
+  }
+
+  .previewImage {
+    width: 100%;
   }

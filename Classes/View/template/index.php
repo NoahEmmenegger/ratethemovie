@@ -18,8 +18,8 @@
         while($rows = mysqli_fetch_assoc($result))
         {
     ?>
-        <div class="item">
-            <a href="./detail/<?php echo $rows['Titel'] ?>"><?php echo $rows['Titel'] ?></a>
+        <div class="item" onclick="window.location='./detail/<?php echo $rows['Titel'] ?>'">
+            <img class="previewImage" src="<?php echo $rows['Bild'] ?>"/>
         </div>
 
     <?php
