@@ -30,6 +30,10 @@ switch (str_replace('/ratethemovie/', '', $_SERVER['REQUEST_URI'])) {
         $accountController = new AccountController();
         $accountController->loginAction();
         break;
+    case 'logout' :
+        $accountController = new AccountController();
+        $accountController->logoutAction();
+        break;
     default:
         http_response_code(404);
         $filmController = new FilmController();

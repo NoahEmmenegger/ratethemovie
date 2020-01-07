@@ -41,4 +41,9 @@ class AccountController {
             $this->view->render('login');
         }
     }
+
+    public function logoutAction()
+    {
+        setcookie('userid', '', time() - 3600);
+    }
 }
