@@ -1,0 +1,36 @@
+<?php
+
+namespace NoahEmmenegger\RateTheMovie\Controller;
+
+include_once(__DIR__.'/../View/EchoView.php');
+include_once('Classes/Service/AccountService.php');
+
+use NoahEmmenegger\RateTheMovie\Service\AccountService;
+use \NoahEmmenegger\RateTheMovie\View\EchoView;
+
+
+class AccountController {
+
+    protected $view = null;
+
+    public function __construct()
+    {
+        $this->view = new EchoView();
+    }
+
+    public function registerAction()
+    {
+        if ($_POST['vorname'] && $_POST['nachname'] && $_POST['email'] && $_POST['psw'])
+        {
+            $accountService = new AccountService();
+            $accountService->CreateAccount($_POST['vorname'], $_POST['nachname'], $_POST['email'], $_POST['psw']);
+        } else {
+            $this->view->render('register');
+        }
+    }
+
+    public function loginAction()
+    {
+        $this->view->render('login');
+    }
+}

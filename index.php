@@ -1,8 +1,10 @@
 <?php
 
+use NoahEmmenegger\RateTheMovie\Controller\AccountController;
 use NoahEmmenegger\RateTheMovie\Controller\FilmController;
 
 include_once('Classes/Controller/FilmController.php');
+include_once('Classes/Controller/AccountController.php');
 
 $explode = explode('/', $_SERVER['REQUEST_URI']);
 $filmName = array_splice($explode, -1)[0];
@@ -21,8 +23,8 @@ switch (str_replace('/ratethemovie/', '', $_SERVER['REQUEST_URI'])) {
         $filmController->detail($filmName);
         break;
     case 'register' :
-        $filmController = new FilmController();
-        $filmController->testFunctionAction();
+        $accountController = new AccountController();
+        $accountController->registerAction();
         break;
     default:
         http_response_code(404);
