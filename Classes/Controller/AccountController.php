@@ -33,11 +33,13 @@ class AccountController {
 
     public function loginAction()
     {
-        if ($_POST['email' && $_POST['passwort']])
+        if ($_POST['email'] && $_POST['psw'])
         {
             $accountService = new AccountService();
-            $accountService->Login($_POST['email'], $_POST['passwort']);
+            $accountService->Login($_POST['email'], $_POST['psw']);
+            $this->view->render('index');
+        }else {
+            $this->view->render('login');
         }
-        $this->view->render('login');
     }
 }

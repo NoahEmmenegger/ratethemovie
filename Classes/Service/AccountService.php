@@ -34,7 +34,16 @@ class AccountService {
 
     public function Login($email, $passwort)
     {
-        
+        $userraw = $this->GetUserByEmail($email);
+        if ($userraw->rowCount() != 0)
+        {
+            $userfetch = $userraw->fetch(PDO::FETCH_ASSOC);
+            if($userfetch['Passwort'] == $passwort)
+            {
+                session_start();
+                $_SESSION['userid'] = $userfetch['Id'];
+            }
+        }
     }
 
 }
