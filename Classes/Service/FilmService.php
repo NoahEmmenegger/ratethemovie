@@ -21,4 +21,43 @@ class FilmService {
         $result = $con->query($sql);
         return $result->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    public function AddKommentar($inhalt, $userId, $filmId)
+    {
+        $con = new PDO('mysql:host=localhost;dbname=ratethemovie', 'root');
+        $sql = "INSERT INTO kommentar (Inhalt, UserId, FilmId) VALUES ('$inhalt', '$userId', '$filmId')";
+        $result = $con->query($sql);
+    }
+
+    public function GetBewertung($filmId)
+    {
+        $userId  = $_COOKIE['userid'];
+        $con = new PDO('mysql:host=localhost;dbname=ratethemovie', 'root');
+        $sql = "SELECT * FROM `bewertung` WHERE `filmId`LIKE '$filmId' AND `userId` LIKE '$userId'";
+        $result = $con->query($sql);
+        return $result->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public function GetBewertungen($filmId)
+    {
+        $con = new PDO('mysql:host=localhost;dbname=ratethemovie', 'root');
+        $sql = "SELECT * FROM `bewertung` WHERE `filmId`LIKE '$filmId'";
+        $result = $con->query($sql);
+        return $result->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function AddBewertung($AnzahlSterne, $userId, $filmId)
+    {
+        if(!$this->GetBewertung($filmId))
+        {
+            $con = new PDO('mysql:host=localhost;dbname=ratethemovie', 'root');
+            $sql = "INSERT INTO bewertung (AnzahlSterne, UserId, FilmId) VALUES ('$AnzahlSterne', '$userId', '$filmId')";
+            $result = $con->query($sql);
+        }else {
+            $con = new PDO('mysql:host=localhost;dbname=ratethemovie', 'root');
+            $sql = "UPDATE bewertung SET AnzahlSterne = '$AnzahlSterne' WHERE `filmId`LIKE '$filmId' AND `userId` LIKE '$userId'";
+            $result = $con->query($sql);
+            var_dump($result);
+        }
+    }
 }

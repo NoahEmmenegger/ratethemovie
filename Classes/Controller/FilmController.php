@@ -28,7 +28,16 @@ class FilmController {
     {
         $filmService = new FilmService();
         $film = $filmService->GetFilmByName($filmName);
+        if ($_POST['kommentar'])
+        {
+            $filmService->AddKommentar($_POST['kommentar'], $_COOKIE['userid'], $film['Id']);
+        }
+        if ($_POST['bewertung'])
+        {
+            $filmService->AddBewertung($_POST['bewertung'], $_COOKIE['userid'], $film['Id']);
+        }
         $kommentare = $filmService->GetKommentare($film['Id']);
+        $this->view->assign('anzahlSterne', $filmService->GetBewertung($film['Id'])['AnzahlSterne']);
         $this->view->assign('film', $film);
         $this->view->assign('kommentare', $kommentare);
         $this->view->render('detail');
