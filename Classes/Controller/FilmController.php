@@ -28,11 +28,11 @@ class FilmController {
     {
         $filmService = new FilmService();
         $film = $filmService->GetFilmByName($filmName);
-        if ($_POST['kommentar'])
+        if (isset($_POST['kommentar']))
         {
             $filmService->AddKommentar($_POST['kommentar'], $_COOKIE['userid'], $film['Id']);
         }
-        if ($_POST['bewertung'])
+        if (isset($_POST['bewertung']))
         {
             $filmService->AddBewertung($_POST['bewertung'], $_COOKIE['userid'], $film['Id']);
         }

@@ -57,7 +57,6 @@ class FilmService {
             $con = new PDO('mysql:host=localhost;dbname=ratethemovie', 'root');
             $sql = "UPDATE bewertung SET AnzahlSterne = '$AnzahlSterne' WHERE `filmId`LIKE '$filmId' AND `userId` LIKE '$userId'";
             $result = $con->query($sql);
-            var_dump($result);
         }
     }
 }
