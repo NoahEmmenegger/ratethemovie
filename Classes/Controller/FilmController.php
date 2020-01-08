@@ -36,8 +36,11 @@ class FilmController {
         {
             $filmService->AddBewertung($_POST['bewertung'], $_COOKIE['userid'], $film['Id']);
         }
+        if (isset($_COOKIE['userid']))
+        {
+            $this->view->assign('anzahlSterne', $filmService->GetBewertung($film['Id'])['AnzahlSterne']);
+        }
         $kommentare = $filmService->GetKommentare($film['Id']);
-        $this->view->assign('anzahlSterne', $filmService->GetBewertung($film['Id'])['AnzahlSterne']);
         $this->view->assign('film', $film);
         $this->view->assign('kommentare', $kommentare);
         $this->view->render('detail');
