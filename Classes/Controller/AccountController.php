@@ -20,19 +20,21 @@ class AccountController {
 
     public function registerAction()
     {
-        if ($_POST['vorname'] && $_POST['nachname'] && $_POST['email'] && $_POST['psw'])
+        if (isset($_POST['vorname']) && isset($_POST['nachname']) && isset($_POST['email']) && isset($_POST['psw']))
         {
             $accountService = new AccountService();
             $accountService->CreateAccount($_POST['vorname'], $_POST['nachname'], $_POST['email'], $_POST['psw']);
 
             setcookie("userid", $accountService->GetUserIdByEmail($_POST['email']) ,0);
+            header("Location: http://localhost/ratethemovie");
+            die();
         }
         $this->view->render('register');
     }
 
     public function loginAction()
     {
-        if ($_POST['email'] && $_POST['psw'])
+        if (isset($_POST['email']) && isset($_POST['psw']))
         {
             $accountService = new AccountService();
             $accountService->Login($_POST['email'], $_POST['psw']);
@@ -46,5 +48,7 @@ class AccountController {
     public function logoutAction()
     {
         setcookie('userid', '', time() - 3600);
+        header("Location: http://localhost/ratethemovie");
+        die();
     }
 }
