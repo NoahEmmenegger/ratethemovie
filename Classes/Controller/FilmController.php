@@ -5,6 +5,7 @@ namespace NoahEmmenegger\RateTheMovie\Controller;
 include_once(__DIR__.'/../View/EchoView.php');
 include_once('Classes/Service/FilmService.php');
 
+use DateTime;
 use NoahEmmenegger\RateTheMovie\Service\FilmService;
 use \NoahEmmenegger\RateTheMovie\View\EchoView;
 
@@ -20,7 +21,8 @@ class FilmController {
 
     public function index()
     {
-        $this->view->assign('testkey', 'testdata');
+        $filmService = new FilmService();
+        $this->view->assign('filme', $filmService->GetFilmsSortByRate());
         $this->view->render('index');
     }
 
@@ -41,6 +43,7 @@ class FilmController {
             $this->view->assign('anzahlSterne', $filmService->GetBewertung($film['Id'])['AnzahlSterne']);
         }
         $kommentare = $filmService->GetKommentare($film['Id']);
+        $this->view->assign('anzahlSterne', $filmService->GetAnzahlSterne($film['Id']));
         $this->view->assign('film', $film);
         $this->view->assign('kommentare', $kommentare);
         $this->view->render('detail');

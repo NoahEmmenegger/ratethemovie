@@ -6,6 +6,14 @@ use \NoahEmmenegger\RateTheMovie\View\EchoView;
 use PDO;
 
 class FilmService {
+    public function GetFilmsSortByRate()
+    {
+        $con = new PDO('mysql:host=localhost;dbname=ratethemovie', 'root');
+        $sql = "SELECT * FROM `film`";
+        $result = $con->query($sql);
+        return $result->fetchAll(PDO::FETCH_ASSOC);
+    }
+
     public function GetFilmByName($name)
     {
         $con = new PDO('mysql:host=localhost;dbname=ratethemovie', 'root');
@@ -48,6 +56,18 @@ class FilmService {
         $sql = "SELECT * FROM `bewertung` WHERE `filmId`LIKE '$filmId'";
         $result = $con->query($sql);
         return $result->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function GetAnzahlSterne($filmId)
+    {
+        $anzahlSterne = 0;
+        $count = 0;
+        foreach ($this->GetBewertungen($filmId) as $bewertung)
+        {
+            $anzahlSterne += $bewertung['AnzahlSterne'];
+            $count ++;
+        }
+        return $anzahlSterne / $count;
     }
 
     public function AddBewertung($AnzahlSterne, $userId, $filmId)
