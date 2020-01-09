@@ -17,7 +17,11 @@ class FilmService {
     public function GetKommentare($filmId)
     {
         $con = new PDO('mysql:host=localhost;dbname=ratethemovie', 'root');
-        $sql = "SELECT * FROM `kommentar` WHERE `filmId`LIKE '$filmId'";
+        $sql = "SELECT kommentar.Inhalt, user.Vorname, user.Nachname, bewertung.AnzahlSterne
+         FROM `kommentar` 
+         INNER JOIN `user` ON kommentar.UserId = user.Id
+         LEFT JOIN `bewertung` ON user.Id = bewertung.UserId
+         WHERE kommentar.FilmId LIKE '$filmId' AND bewertung.FilmId LIKE '$filmId' OR bewertung.FilmId IS NULL";
         $result = $con->query($sql);
         return $result->fetchAll(PDO::FETCH_ASSOC);
     }

@@ -36,7 +36,8 @@ class AccountController {
         {
             $accountService = new AccountService();
             $accountService->Login($_POST['email'], $_POST['psw']);
-            $this->view->render('index');
+            header("Location: http://localhost/ratethemovie");
+            die();
         }else {
             $this->view->render('login');
         }

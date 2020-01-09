@@ -41,7 +41,10 @@
         {
     ?>
         <div class="kommentar">
-            <h1><?php echo $kommentar['UserId'] ?></h1>
+            <div>
+                <h1 style="display: inline-block"><?php echo $kommentar['Vorname'] . ' ' . $kommentar['Nachname'] ?></h1>
+                <small>Anzahl Sterne (<?php echo $kommentar['AnzahlSterne'] ?>)</small>
+            </div>
             <h3><?php echo $kommentar['Inhalt'] ?></h1>
         </div>
 
