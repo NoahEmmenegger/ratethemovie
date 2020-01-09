@@ -43,7 +43,7 @@ class FilmController {
             $this->view->assign('anzahlSterne', $filmService->GetBewertung($film['Id'])['AnzahlSterne']);
         }
         $kommentare = $filmService->GetKommentare($film['Id']);
-        $this->view->assign('anzahlSterne', $filmService->GetAnzahlSterne($film['Id']));
+        $this->view->assign('anzahlSterneFilm', $filmService->GetAnzahlSterne($film['Id']));
         $this->view->assign('film', $film);
         $this->view->assign('kommentare', $kommentare);
         $this->view->render('detail');
