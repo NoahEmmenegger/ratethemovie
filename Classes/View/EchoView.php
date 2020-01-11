@@ -26,6 +26,7 @@ class EchoView {
     <body>
        <header>
        <ul>
+           <li style="float:left"><a href="/ratethemovie">Home</a></li>
            <?php 
                 if (!isset($_COOKIE['userid']))
                 {

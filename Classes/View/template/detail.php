@@ -1,6 +1,7 @@
 <div class="FilmDetail">
     <?php echo $this->data['anzahlSterneFilm'] ?>
     <h1 style="text-align: center"><?php echo $this->data['film']['Titel'] ?></h1>
+    <h3 style="text-align: center">von <?php echo $this->data['film']['Produzent'] ?></h3>
     <img class="detailImage" src="http://localhost/ratethemovie/<?php echo $this->data['film']['Bild'] ?>"/>
     <div>
         <?php echo $this->data['film']['Beschreibung'] ?>
