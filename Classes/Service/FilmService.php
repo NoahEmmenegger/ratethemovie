@@ -9,7 +9,17 @@ class FilmService {
     public function GetFilmsSortByRate()
     {
         $con = new PDO('mysql:host=localhost;dbname=ratethemovie', 'root');
-        $sql = "SELECT * FROM `film`";
+        $sql = "SELECT  *
+        FROM    (
+                SELECT  f.Titel, f.Bild, AVG(b.AnzahlSterne) AS ar, COUNT(*) AS cnt
+                FROM    film f
+                JOIN    bewertung b
+                ON      b.FilmId = f.Id
+                GROUP BY
+                        f.Id
+                ) q
+        ORDER BY
+                CASE WHEN cnt >= 100 THEN 0 ELSE 1 END, ar DESC";
         $result = $con->query($sql);
         return $result->fetchAll(PDO::FETCH_ASSOC);
     }
@@ -74,6 +84,10 @@ class FilmService {
         {
             $anzahlSterne += $bewertung['AnzahlSterne'];
             $count ++;
+        }
+        if ($count == 0)
+        {
+            return;
         }
         return $anzahlSterne / $count;
     }
