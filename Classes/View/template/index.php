@@ -3,8 +3,10 @@
 <div class="startseitenblock">
     <h1>ratethemovie.ch</h1>
     <h2>Hier kommt ein kleiner Text</h2>
-    <input type="text" placeholder="suchen"/>
-    <input type="button" value="search">
+    <form action="./search" method="POST">
+        <input name="search" type="text" placeholder="suchen"/>
+        <input type="submit" value="search">
+    </form>
 </div>
 <div class="beliebtfeed">
     <h1>Beliebteste Filme</h1>

@@ -53,4 +53,13 @@ class FilmController {
     {
         $this->view->render('register');
     }
+
+    public function searchAction()
+    {
+        $filmService = new FilmService();
+
+        $this->view->assign('searching', $_POST['search']);
+        $this->view->assign('filme', $filmService->SearchFilms($_POST['search']));
+        $this->view->render('search');
+    }
 }

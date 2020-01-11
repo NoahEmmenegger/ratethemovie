@@ -22,6 +22,14 @@ class FilmService {
         return $result->fetch(PDO::FETCH_ASSOC);
     }
 
+    public function SearchFilms($search)
+    {
+        $con = new PDO('mysql:host=localhost;dbname=ratethemovie', 'root');
+        $sql = "SELECT * FROM film WHERE `Titel` LIKE '%$search%'";
+        $result = $con->query($sql);
+        return $result->fetchAll(PDO::FETCH_ASSOC);
+    }
+
     public function GetKommentare($filmId)
     {
         $con = new PDO('mysql:host=localhost;dbname=ratethemovie', 'root');

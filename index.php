@@ -22,6 +22,10 @@ switch (str_replace('/ratethemovie/', '', $_SERVER['REQUEST_URI'])) {
         $filmController = new FilmController();
         $filmController->detail($filmName);
         break;
+    case 'search' :
+        $filmController = new FilmController();
+        $filmController->searchAction($filmName);
+        break;
     case 'register' :
         $accountController = new AccountController();
         $accountController->registerAction();
