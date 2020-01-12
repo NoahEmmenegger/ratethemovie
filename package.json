@@ -3,9 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "dependencies": {
-    "bootstrap": "^3.4.1"
-  },
+  "dependencies": {},
   "devDependencies": {},
   "scripts": {
     "test": "test"
