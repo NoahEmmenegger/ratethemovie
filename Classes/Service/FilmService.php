@@ -20,7 +20,8 @@ class FilmService {
                         f.Id
                 ) q
         ORDER BY
-                CASE WHEN cnt >= 100 THEN 0 ELSE 1 END, ar DESC";
+                CASE WHEN cnt >= 100 THEN 0 ELSE 1 END, ar DESC
+        LIMIT 3";
         $result = $con->query($sql);
         return $result->fetchAll(PDO::FETCH_ASSOC);
     }
