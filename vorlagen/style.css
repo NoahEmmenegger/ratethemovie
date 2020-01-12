@@ -87,7 +87,6 @@ ul {
     font-size: 200%;
     line-height: 1.2;
     color: #D0D0D0;
-    text-shadow: 1px 1px #B0B0B0, 2px 2px #606060, .1em .1em .2em rgba(0,0,0,.5);
     transition: all .5s;
    }
    
@@ -97,13 +96,11 @@ ul {
    
    span.sternebewertung > input:checked ~ label {
     color: #FFD700;
-    text-shadow: 1px 1px #C06000, 2px 2px #904000, .1em .1em .2em rgba(0,0,0,.5);
    }
    
    span.sternebewertung:not(:checked) > label:hover,
    span.sternebewertung:not(:checked) > label:hover ~ label {
     color: #FFD700;
-    text-shadow: 1px 1px #F29E02, 2px 2px #B57340, .1em .1em .2em rgba(0,0,0,.5);
    }
    
    span.sternebewertung > input:checked + label:hover,
@@ -112,7 +109,6 @@ ul {
    span.sternebewertung > input:checked ~ label:hover ~ label,
    span.sternebewertung > label:hover ~ input:checked ~ label {
     color: #F9B500;
-    text-shadow: 1px 1px #F8BA01, 2px 2px #B57340, .1em .1em .2em rgba(0,0,0,.5);
    }
 
    .bewertung {
