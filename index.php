@@ -6,9 +6,11 @@ use NoahEmmenegger\RateTheMovie\Controller\FilmController;
 include_once('Classes/Controller/FilmController.php');
 include_once('Classes/Controller/AccountController.php');
 
+// url auslesen
 $explode = explode('/', $_SERVER['REQUEST_URI']);
 $filmName = array_splice($explode, -1)[0];
 
+// url bearbeiten und zur richtigen Action
 switch (str_replace('/ratethemovie/', '', $_SERVER['REQUEST_URI'])) {
     case '' :
         $filmController = new FilmController();
@@ -39,8 +41,9 @@ switch (str_replace('/ratethemovie/', '', $_SERVER['REQUEST_URI'])) {
         $accountController->logoutAction();
         break;
     default:
+    // falls Url nicht erkannt wird
         http_response_code(404);
         $filmController = new FilmController();
-        $filmController->testFunctionAction();
+        $filmController->index();
         break;
 }

@@ -6,6 +6,7 @@ use \NoahEmmenegger\RateTheMovie\View\EchoView;
 use PDO;
 
 class FilmService {
+    // erhalte die 3 beliebtesten Filme
     public function GetFilmsSortByRate()
     {
         $con = new PDO('mysql:host=localhost;dbname=ratethemovie', 'root');
@@ -24,6 +25,7 @@ class FilmService {
         return $result->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    // erhalte Film anhand dem Namen
     public function GetFilmByName($name)
     {
         $con = new PDO('mysql:host=localhost;dbname=ratethemovie', 'root');
@@ -32,6 +34,7 @@ class FilmService {
         return $result->fetch(PDO::FETCH_ASSOC);
     }
 
+    // suche ein Film
     public function SearchFilms($search)
     {
         $con = new PDO('mysql:host=localhost;dbname=ratethemovie', 'root');
@@ -40,6 +43,7 @@ class FilmService {
         return $result->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    // erhalte alle Kommentare eines Filmes
     public function GetKommentare($filmId)
     {
         $con = new PDO('mysql:host=localhost;dbname=ratethemovie', 'root');
@@ -52,6 +56,7 @@ class FilmService {
         return $result->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    // füge ein Kommentar dem Film hinzu
     public function AddKommentar($inhalt, $userId, $filmId)
     {
         $con = new PDO('mysql:host=localhost;dbname=ratethemovie', 'root');
@@ -59,6 +64,7 @@ class FilmService {
         $result = $con->query($sql);
     }
 
+    // erhalte alle Bewertungen eines Filmes eines Users
     public function GetBewertung($filmId)
     {
         $userId  = $_COOKIE['userid'];
@@ -68,6 +74,7 @@ class FilmService {
         return $result->fetch(PDO::FETCH_ASSOC);
     }
 
+    // erhalte alle Bewertungen eines Filmes
     public function GetBewertungen($filmId)
     {
         $con = new PDO('mysql:host=localhost;dbname=ratethemovie', 'root');
@@ -76,10 +83,12 @@ class FilmService {
         return $result->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    // erhalte anzahl Sterne eines Filmes
     public function GetAnzahlSterne($filmId)
     {
         $anzahlSterne = 0;
         $count = 0;
+        // für jede Bewertung
         foreach ($this->GetBewertungen($filmId) as $bewertung)
         {
             $anzahlSterne += $bewertung['AnzahlSterne'];
@@ -89,17 +98,21 @@ class FilmService {
         {
             return;
         }
+        // durchschnitt berechnen
         return $anzahlSterne / $count;
     }
 
+    // Bewertung hinzufügen
     public function AddBewertung($AnzahlSterne, $userId, $filmId)
     {
+        // falls diese Bewertung noch nicht existiert, erstellt er eine neue Bewertung
         if(!$this->GetBewertung($filmId))
         {
             $con = new PDO('mysql:host=localhost;dbname=ratethemovie', 'root');
             $sql = "INSERT INTO bewertung (AnzahlSterne, UserId, FilmId) VALUES ('$AnzahlSterne', '$userId', '$filmId')";
             $result = $con->query($sql);
         }else {
+            // falls die Bewertung bereits existiert, überschreibt er die Bewertung
             $con = new PDO('mysql:host=localhost;dbname=ratethemovie', 'root');
             $sql = "UPDATE bewertung SET AnzahlSterne = '$AnzahlSterne' WHERE `filmId`LIKE '$filmId' AND `userId` LIKE '$userId'";
             $result = $con->query($sql);

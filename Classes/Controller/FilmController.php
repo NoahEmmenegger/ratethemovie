@@ -14,11 +14,14 @@ class FilmController {
 
     protected $view = null;
 
+    // konstruktor
     public function __construct()
     {
+        // inject
         $this->view = new EchoView();
     }
 
+    // home seite
     public function index()
     {
         $filmService = new FilmService();
@@ -26,18 +29,22 @@ class FilmController {
         $this->view->render('index');
     }
 
+    // film detail
     public function detail($filmName)
     {
         $filmService = new FilmService();
         $film = $filmService->GetFilmByName($filmName);
-        if (isset($_POST['kommentar']))
+        // neuer kommentar hinzufügen
+        if (isset($_POST['kommentar']) && isset($_COOKIE['userid']))
         {
             $filmService->AddKommentar($_POST['kommentar'], $_COOKIE['userid'], $film['Id']);
         }
-        if (isset($_POST['bewertung']))
+        // neue bewertung hinzufügens
+        if (isset($_POST['bewertung']) && isset($_COOKIE['userid']))
         {
             $filmService->AddBewertung($_POST['bewertung'], $_COOKIE['userid'], $film['Id']);
         }
+        // wenn der user eingeloggt ist, soll er seine Bewertung sehen können
         if (isset($_COOKIE['userid']))
         {
             $this->view->assign('anzahlSterne', $filmService->GetBewertung($film['Id'])['AnzahlSterne']);
@@ -49,11 +56,7 @@ class FilmController {
         $this->view->render('detail');
     }
 
-    public function testFunctionAction()
-    {
-        $this->view->render('register');
-    }
-
+    // film suche
     public function searchAction()
     {
         $filmService = new FilmService();
