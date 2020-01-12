@@ -8,6 +8,10 @@ use PDO;
 class AccountService {
     public function CreateAccount($vorname, $nachname, $email, $psw)
     {
+        if(!filter_var($email, FILTER_VALIDATE_EMAIL))
+        {
+            echo('geben Sie eine gültige Email ein');
+        }
         if($this->GetUserByEmail($email)->rowCount() == 0)
         {
             $con = new PDO('mysql:host=localhost;dbname=ratethemovie', 'root');
